@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Passenger } from '../../models/passenger.interface';
+import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: "passenger-detail",
@@ -24,7 +25,7 @@ import { Passenger } from '../../models/passenger.interface';
       <button (click)="onRemove()">Remove</button>
     `
 })
-export class PassengerDetailComponent {
+export class PassengerDetailComponent implements OnChanges {
 
   @Input()
   detail: Passenger;
@@ -38,6 +39,12 @@ export class PassengerDetailComponent {
   editing: boolean = false;
 
   constructor() { }
+
+  ngOnChanges(changes): void {
+    if (changes.detail) {
+      this.detail = Object.assign({}, changes.detail.currentValue);
+    }
+  }
 
   onNameChange(value: string) {
     this.detail.fullname = value;
