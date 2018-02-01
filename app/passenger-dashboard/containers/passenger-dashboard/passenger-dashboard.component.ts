@@ -10,21 +10,10 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
             <passenger-count
                 [items]="passengers">
             </passenger-count>
-            <passenger-detail></passenger-detail>
-            <ul>
-                <li *ngFor="let passenger of passengers; let i = index">
-                <span class="status"
-                [ngClass]="{'checked-in': passenger.checkedIn}"
-                ></span>
-                {{ i }}: {{passenger.fullname}}
-                <div class="date">
-                    Check in date: {{passenger.checkedInDate ? ( passenger.checkedInDate | date: 'yMMMMd' | uppercase) : 'Not checked in'  }}
-                </div>
-                <div class="children">
-                    Children: {{passenger.children?.length || 0}}
-                </div>
-                </li>
-            </ul>
+            <passenger-detail
+                *ngFor="let passenger of passengers;"
+                [detail]="passenger">
+            </passenger-detail>
         </div>
     `
 })
