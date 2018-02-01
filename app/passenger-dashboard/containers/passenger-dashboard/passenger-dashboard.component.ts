@@ -7,7 +7,10 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
     styleUrls: ["passenger-dashboard.component.scss"],
     template: `
         <div>
-            <h3>Airpline Passengers</h3>
+            <passenger-count
+                [items]="passengers">
+            </passenger-count>
+            <passenger-detail></passenger-detail>
             <ul>
                 <li *ngFor="let passenger of passengers; let i = index">
                 <span class="status"
