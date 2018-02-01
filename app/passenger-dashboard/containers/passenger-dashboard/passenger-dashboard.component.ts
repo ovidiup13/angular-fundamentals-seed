@@ -12,7 +12,9 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
             </passenger-count>
             <passenger-detail
                 *ngFor="let passenger of passengers;"
-                [detail]="passenger">
+                [detail]="passenger"
+                (edit)="handleEdit($event)"
+                (remove)="handleRemove($event)">
             </passenger-detail>
         </div>
     `
@@ -38,5 +40,13 @@ export class PassengerDashboardComponent implements OnInit {
                 children: []
             }
         ];
+    }
+
+    handleEdit(event: any) {
+        console.log(event);
+    }
+
+    handleRemove(event: any) {
+        console.log(event);
     }
 }
