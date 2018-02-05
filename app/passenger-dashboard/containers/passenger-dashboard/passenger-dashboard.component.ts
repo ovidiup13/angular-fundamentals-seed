@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
-import { Passenger } from '../../models/passenger.interface';
-import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { Component } from "@angular/core";
+import { Passenger } from "../../models/passenger.interface";
+import { OnInit } from "@angular/core/src/metadata/lifecycle_hooks";
+import { PassengerDashboardService } from "../../passenger-dashboard.service";
 
 @Component({
-    selector: "passenger-dashboard",
-    styleUrls: ["passenger-dashboard.component.scss"],
-    template: `
+  selector: "passenger-dashboard",
+  styleUrls: ["passenger-dashboard.component.scss"],
+  template: `
         <div>
             <passenger-count
                 [items]="passengers">
@@ -20,40 +21,26 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
     `
 })
 export class PassengerDashboardComponent implements OnInit {
-    passengers: Passenger[];
+  passengers: Passenger[];
 
-    constructor() { }
+  constructor(private passengerService: PassengerDashboardService) {}
 
-    ngOnInit(): void {
-        this.passengers = [
-            {
-                id: 1,
-                fullname: "Ovidiu",
-                checkedIn: true,
-                checkedInDate: 1490742000000,
-                children: null
-            }, {
-                id: 2,
-                fullname: "Claudiu",
-                checkedIn: false,
-                checkedInDate: null,
-                children: []
-            }
-        ];
-    }
+  ngOnInit(): void {
+    this.passengers = this.passengerService.getPassengers();
+  }
 
-    handleEdit(event: Passenger) {
-        this.passengers = this.passengers.map((passenger: Passenger) => {
-            if (passenger.id === event.id) {
-                passenger = Object.assign({}, passenger, event);
-            }
-            return passenger;
-        })
-    }
+  handleEdit(event: Passenger) {
+    this.passengers = this.passengers.map((passenger: Passenger) => {
+      if (passenger.id === event.id) {
+        passenger = Object.assign({}, passenger, event);
+      }
+      return passenger;
+    });
+  }
 
-    handleRemove(event: Passenger) {
-        this.passengers = this.passengers.filter((passenger: Passenger) => {
-            return passenger.id !== event.id;
-        })
-    }
+  handleRemove(event: Passenger) {
+    this.passengers = this.passengers.filter((passenger: Passenger) => {
+      return passenger.id !== event.id;
+    });
+  }
 }
