@@ -2,7 +2,7 @@
   "passengers": [
     {
       "id": 1,
-      "fullname": "Ovidiu",
+      "fullname": "Ovidiu Popoviciu",
       "checkedIn": true,
       "checkedInDate": 1490742000000,
       "children": null
