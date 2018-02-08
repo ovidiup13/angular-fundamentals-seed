@@ -2,17 +2,31 @@
   "passengers": [
     {
       "id": 1,
-      "fullname": "Ovidiu Popoviciu",
+      "fullname": "Ovidiu",
       "checkedIn": true,
       "checkedInDate": 1490742000000,
-      "children": null
+      "children": ""
     },
     {
       "id": 2,
       "fullname": "Claudiu",
       "checkedIn": true,
       "checkedInDate": 1490742000000,
-      "children": null
+      "baggage": ""
+    },
+    {
+      "id": 3,
+      "fullname": "Ioana",
+      "checkedIn": true,
+      "checkedInDate": 1490742000000,
+      "baggage": ""
+    },
+    {
+      "id": 4,
+      "fullname": "Cristi",
+      "checkedIn": true,
+      "checkedInDate": 1490742000000,
+      "baggage": ""
     }
   ]
 }

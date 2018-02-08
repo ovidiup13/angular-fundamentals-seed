@@ -1,6 +1,6 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Passenger } from '../../models/passenger.interface';
-import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
+import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { Passenger } from "../../models/passenger.interface";
+import { OnChanges } from "@angular/core/src/metadata/lifecycle_hooks";
 
 @Component({
   selector: "passenger-detail",
@@ -17,28 +17,21 @@ import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
         <div class="date">
             Check in date: {{detail.checkedInDate ? ( detail.checkedInDate | date: 'yMMMMd' | uppercase) : 'Not checked in'  }}
         </div>
-        <div class="children">
-            Children: {{detail.children?.length || 0}}
-        </div>
       </div>
       <button (click)="toggleEdit()">{{editing ? 'Done' : 'Edit'}}</button>
       <button (click)="onRemove()">Remove</button>
     `
 })
 export class PassengerDetailComponent implements OnChanges {
+  @Input() detail: Passenger;
 
-  @Input()
-  detail: Passenger;
+  @Output() remove: EventEmitter<Passenger> = new EventEmitter();
 
-  @Output()
-  remove: EventEmitter<Passenger> = new EventEmitter();
-
-  @Output()
-  edit: EventEmitter<any> = new EventEmitter();
+  @Output() edit: EventEmitter<any> = new EventEmitter();
 
   editing: boolean = false;
 
-  constructor() { }
+  constructor() {}
 
   ngOnChanges(changes): void {
     if (changes.detail) {
