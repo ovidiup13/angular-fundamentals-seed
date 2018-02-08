@@ -7,7 +7,6 @@ import { Baggage } from "../../models/baggage.interface";
   styleUrls: ["passenger-form.component.scss"],
   template: `
   <form (ngSubmit)="handleSubmit(form.value, form.valid)" #form="ngForm" novalidate>
-            {{detail | json}}
             <div>
               Passenger name:
               <input
@@ -35,6 +34,7 @@ import { Baggage } from "../../models/baggage.interface";
             </div>
 
             <div>
+            Checked In:
               <label>
                 <input
                 type="checkbox"
@@ -47,9 +47,9 @@ import { Baggage } from "../../models/baggage.interface";
             <div *ngIf="form.value.checkedIn">
               Check in date:
                 <input
-                  type="number"
+                  type="date"
                   name="checkedInDate"
-                  [ngModel]="detail?.checkedInDate">
+                  [ngModel]="detail?.checkedInDate | date">
             </div>
 
             <div>

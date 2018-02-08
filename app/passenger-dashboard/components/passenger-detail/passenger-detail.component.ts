@@ -20,6 +20,7 @@ import { OnChanges } from "@angular/core/src/metadata/lifecycle_hooks";
       </div>
       <button (click)="toggleEdit()">{{editing ? 'Done' : 'Edit'}}</button>
       <button (click)="onRemove()">Remove</button>
+      <button (click)="goToPassenger()">View</button>
     `
 })
 export class PassengerDetailComponent implements OnChanges {
@@ -28,6 +29,8 @@ export class PassengerDetailComponent implements OnChanges {
   @Output() remove: EventEmitter<Passenger> = new EventEmitter();
 
   @Output() edit: EventEmitter<any> = new EventEmitter();
+
+  @Output() view: EventEmitter<any> = new EventEmitter();
 
   editing: boolean = false;
 
@@ -41,6 +44,10 @@ export class PassengerDetailComponent implements OnChanges {
 
   onNameChange(value: string) {
     this.detail.fullname = value;
+  }
+
+  goToPassenger() {
+    this.view.emit(this.detail);
   }
 
   toggleEdit() {
